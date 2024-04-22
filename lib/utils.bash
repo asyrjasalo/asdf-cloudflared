@@ -40,7 +40,11 @@ download_release() {
 
   case $(uname | tr '[:upper:]' '[:lower:]') in
   linux*)
-    local platform=linux-amd64
+    if [ "$(uname -m)" = "aarch64" ]; then
+      local platform=linux-arm64
+    else
+      local platform=linux-amd64
+    fi
     local ext=""
     ;;
   darwin*)
